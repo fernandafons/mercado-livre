@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.button`
   background-color: ${props => props.theme.colors.white};
   width: 80%;
-  height: 150px;
+  height: 170px;
   display: flex;
   padding: 5px;
   justify-content: space-between;
+  border: none;
+  :hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
 `;
 
 export const Image = styled.img`
@@ -16,6 +21,9 @@ export const Image = styled.img`
 export const BoxDescription = styled.div`
   width: 55%;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 export const BoxHeader = styled.div`

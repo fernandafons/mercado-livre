@@ -1,5 +1,7 @@
 import React from "react";
 import Home from "./pages/Home";
+import Details from "./pages/Details";
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   const [data, setData] = React.useState(null);
@@ -11,7 +13,10 @@ function App() {
   }, []);
 
   return (
-    <Home />
+    <Routes>
+      <Route path="/" element={<Home />}  />
+      <Route path="/Details" element={<Details />}  />
+    </Routes>
   );
 }
 
