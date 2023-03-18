@@ -1,23 +1,37 @@
 import React, {useState} from 'react';
 import SearchBar from '../../components/SearchBar';
 import Results from '../Results';
+import axios from 'axios';
 
-import { Container, Text } from './styles';
+import { Container } from './styles';
 
 const Home = () => {
-  const [data, setData] = useState(null);
+  const [items, setItems] = useState(null);
   const [searchWord, setSearchWord] = useState('');
 
   const handleSearch = async() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.author));
-  };
+    const resp = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${searchWord}`)
+    const json = await resp.json()
+    setItems(json.results);
+    // console.log('json', json.results);
+
+    // axios.get(`http://localhost:3001/search/${query}`)
+    //   .then(response => {
+    //     setItems(response.data.results);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+  }
 
   return (
   <Container>
-    <SearchBar handleSearch={handleSearch} searchWord={searchWord} setSearchWord={setSearchWord}/>
-    <Results />
+    <SearchBar 
+      handleSearch={handleSearch} 
+      searchWord={searchWord} 
+      setSearchWord={setSearchWord}
+    />
+    {items && <Results items={items}/>}
   </Container>
   )
 }

@@ -4,18 +4,21 @@ import { Container, Image, SearchInput, BoxIcon, Icon } from './styles';
 import Logo from '../../images/logo.png';
 
 const SearchBar = ({ handleSearch, setSearchWord, searchWord }) => {
-  const handleClick = (e) => {
-    setSearchWord(e);
-    handleSearch();
-
-    console.log('searchWord', searchWord);
-  }
+  // const handleClick = () => {
+  //   console.log('searchWord', searchWord);
+  //   // setSearchWord(event);
+  //   handleSearch();
+  // }
   
   return (
     <Container>
       <Image src={Logo} />
-      <SearchInput placeholder='Nunca dejes de buscar'/>
-      <BoxIcon onClick={event => handleClick(event.target.value)}>
+      <SearchInput 
+        value={searchWord}
+        onChange={(event) => setSearchWord(event.target.value)} 
+        placeholder='Nunca dejes de buscar'
+      />
+      <BoxIcon onClick={handleSearch}>
         <Icon fontSize={'medium'}/>
       </BoxIcon>
     </Container>

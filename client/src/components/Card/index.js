@@ -13,22 +13,26 @@ import {
   Location 
 } from './styles';
 
-const Card = () => {
+const Card = ({ item }) => {
+  console.log('item no card', item);
+  const freeShipping = item.shipping.free_shipping;
   return (
     <Container>
-      <Image src={Iphone} />
+      <Image src={item.thumbnail} />
       <BoxDescription>
       <BoxHeader>
         <Price>
-          $1998,00
+          $ {item.price}
         </Price>
+        {freeShipping && 
         <FreeShipping>
           <FcShipped />
         </FreeShipping>
+        }
       </BoxHeader>
-      <ShortDescription>Iphone novo</ShortDescription>
+      <ShortDescription>{item.title}</ShortDescription>
       </BoxDescription>
-      <Location>Mendonza</Location>
+      <Location>{item.address.state_name}</Location>
     </Container>
     )
 }

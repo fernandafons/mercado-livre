@@ -5,21 +5,22 @@ import { useNavigate } from 'react-router-dom';
 
 import { Container, BoxPath, Path } from './styles';
 
-const Results = () => {
+const Results = ({ items }) => {
   const navigate = useNavigate();
   const handleClick = (event) => {
     navigate('/Details');
   };
 
+  console.log('items', items);
+  
   return (
     <Container onClick={handleClick}>
       <BoxPath>
       <Path>Teste>teste>teste>Teste</Path>
       </BoxPath>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {items.map((item) => 
+      <Card key={item.id} item={item}/>
+      )}
     </Container>
   )
 }
