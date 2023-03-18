@@ -7,9 +7,9 @@ export const theme = {
     blue: "#3383FB"
   },
   sizes: {
-    big: "2rem",
-    regular: "1.4rem",
-    small: "1.1rem",
+    big: "1.5rem",
+    regular: "1.2rem",
+    small: "1rem",
   },
 }
 
