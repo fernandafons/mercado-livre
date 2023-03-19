@@ -31,7 +31,7 @@ const Home = () => {
       searchWord={searchWord} 
       setSearchWord={setSearchWord}
     />
-    {items && <Results items={items}/>}
+    {items && <Results items={items} setItems={setItems}/>}
   </Container>
   )
 }

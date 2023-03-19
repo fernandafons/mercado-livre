@@ -9,7 +9,7 @@ export const Container = styled.button`
   justify-content: space-between;
   border: none;
   :hover {
-    opacity: 0.8;
+    opacity: 0.7;
     cursor: pointer;
   }
 `;

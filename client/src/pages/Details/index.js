@@ -20,15 +20,14 @@ import {
   DescriptionText,
 } from './styles';
 
-const Details = () => {
-  const [data, setData] = useState(null);
+const Details = ({ item, resp, setItems }) => {
   const [searchWord, setSearchWord] = useState('');
-
   const handleSearch = async() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.author));
-  };
+    const resp = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${searchWord}`)
+    const json = await resp.json()
+    setItems(json.results);
+  }
+  console.log('resp', resp);
 
   return (
     <Container>
