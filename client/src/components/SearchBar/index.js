@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import { StateContext } from '../../hooks/Context';
 import api from '../../services/axios';
+import { useNavigate } from 'react-router-dom';
 
 import { Container, Image, SearchInput, BoxIcon, Icon } from './styles';
 import Logo from '../../images/logo.png';
 
 const SearchBar = () => {
   const { searchWord, setSearchWord, setItems } = useContext(StateContext);
+  const navigate = useNavigate();
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -17,6 +19,7 @@ const SearchBar = () => {
   const handleSearch = async() => {
     const resp = await api.get(`/api/items?q=${searchWord}`)
     setItems(resp.data);
+    navigate('/Results');
   }
   
   return (

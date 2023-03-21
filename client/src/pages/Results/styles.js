@@ -4,6 +4,12 @@ export const Container = styled.div`
   display: flex;
   flex: 1;
   height: 100%;
+  flex-direction: column;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex: 1;
   background-color: ${props => props.theme.colors.gray};
   flex-direction: column;
   align-items: center;

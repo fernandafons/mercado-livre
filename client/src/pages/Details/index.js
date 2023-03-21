@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 import SearchBar from '../../components/SearchBar';
-import { StateContext } from '../../hooks/Context';
 
 import { 
   Container, 
@@ -23,23 +22,16 @@ import {
 } from './styles';
 
 const Details = () => {
-  const { searchWord, setSearchWord } = useContext(StateContext);
   const location = useLocation();
   const itemDetail = location.state.data.itemDetails;
   console.log('itemDetail', itemDetail);
 
-  const handleSearch = async() => {
-    const resp = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${searchWord}`)
-    const json = await resp.json()
-    // setItems(json.results);
-  }
-
   return (
     <Container>
-      <SearchBar handleSearch={handleSearch} searchWord={searchWord} setSearchWord={setSearchWord}/>
+      <SearchBar />
       <ContentBox>
         <BoxPath>
-        <Path>{`Teste>teste>teste>Teste`}</Path>
+        <Path>{`Teste > teste > teste > Teste`}</Path>
         </BoxPath>
         <InnerBox>
           <BoxProduct>
