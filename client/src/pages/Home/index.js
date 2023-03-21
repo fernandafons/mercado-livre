@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import SearchBar from '../../components/SearchBar';
 import Results from '../Results';
-import axios from 'axios';
+import api from '../../services/axios';
 
 import { Container } from './styles';
 
@@ -10,18 +10,8 @@ const Home = () => {
   const [searchWord, setSearchWord] = useState('');
 
   const handleSearch = async() => {
-    const resp = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${searchWord}`)
-    const json = await resp.json()
-    setItems(json.results);
-    // console.log('json', json.results);
-
-    // axios.get(`http://localhost:3001/search/${query}`)
-    //   .then(response => {
-    //     setItems(response.data.results);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
+    const resp = await api.get(`/api/items?q=${searchWord}`)
+    setItems(resp.data);
   }
 
   return (

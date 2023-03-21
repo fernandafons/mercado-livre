@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Iphone from '../../images/iphone.png';
 import SearchBar from '../../components/SearchBar';
@@ -20,21 +21,23 @@ import {
   DescriptionText,
 } from './styles';
 
-const Details = ({ item, resp, setItems }) => {
+const Details = () => {
   const [searchWord, setSearchWord] = useState('');
+  let location = useLocation();
+  console.log('location', location.state);
+
   const handleSearch = async() => {
     const resp = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${searchWord}`)
     const json = await resp.json()
-    setItems(json.results);
+    // setItems(json.results);
   }
-  console.log('resp', resp);
 
   return (
     <Container>
       <SearchBar handleSearch={handleSearch} searchWord={searchWord} setSearchWord={setSearchWord}/>
       <ContentBox>
         <BoxPath>
-        <Path>Teste>teste>teste>Teste</Path>
+        <Path>{`Teste>teste>teste>Teste`}</Path>
         </BoxPath>
         <InnerBox>
           <BoxProduct>

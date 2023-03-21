@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FcShipped } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
+import api from '../../services/axios';
 
 import { 
   Container, 
@@ -14,36 +15,19 @@ import {
 } from './styles';
 
 const Card = ({ item, setItems }) => {
-  // console.log('item.id', item.id);
-  const freeShipping = item.shipping.free_shipping;
-  const id = item.id;
+  const freeShipping = item.free_shipping;
   const navigate = useNavigate();
-  const [description, setDescription] = useState('');
   
   const handleClick = async() => {
-    const request = await fetch(`https://api.mercadolibre.com/items/${id}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer 8547864014068284'
-      }
-    })
-    const response = await request.json();
-    console.log('response', response);
-    // setDescription(resp.plain_text);
-    // console.log('description', description);
-    
-    const req = await fetch(`https://api.mercadolibre.com/items/${id}/description`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer 8547864014068284'
-      }
-    })
-    const resp = await req.json();
-    console.log('resp', resp.plain_text);
-    setDescription(resp.plain_text);
-    console.log('description', description);
+    const request = await api.get(`/api/items/${item.id}`)
+    const itemDetails = request.data;
+    console.log('itemDetails', itemDetails);
 
-    navigate('/Details', item, resp, setItems);
+    const data = {
+      itemDetails: itemDetails,
+    }
+
+    navigate('/Details', {state: { data }});
   };
   return (
     <Container onClick={handleClick}>
@@ -51,7 +35,7 @@ const Card = ({ item, setItems }) => {
       <BoxDescription>
       <BoxHeader>
         <Price>
-          $ {item.price}
+          $ {item.price.price}
         </Price>
         {freeShipping && 
         <FreeShipping>
@@ -61,7 +45,7 @@ const Card = ({ item, setItems }) => {
       </BoxHeader>
       <ShortDescription>{item.title}</ShortDescription>
       </BoxDescription>
-      <Location>{item.address.state_name}</Location>
+      <Location>{item.state_name}</Location>
     </Container>
     )
 }
