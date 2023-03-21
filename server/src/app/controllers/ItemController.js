@@ -4,7 +4,7 @@ class ItemController {
   async listItems(req, res){
     try {
       const query = req.query.q;
-      const response = await api.get(`/sites/MLA/search?q=${query}`);
+      const response = await api.get(`/sites/MLA/search?q=${query}`, {params: {limit: 4}});
 
       // console.log(response.data);
 
