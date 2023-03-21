@@ -89,5 +89,5 @@ export const TitleDescription = styled.text`
 
 export const DescriptionText = styled.text`
   color: ${props => props.theme.colors.black};
-
+  text-align: justify;
 `;

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Iphone from '../../images/iphone.png';
 import SearchBar from '../../components/SearchBar';
+import { StateContext } from '../../hooks/Context';
+
 import { 
   Container, 
   ContentBox, 
@@ -22,9 +23,10 @@ import {
 } from './styles';
 
 const Details = () => {
-  const [searchWord, setSearchWord] = useState('');
-  let location = useLocation();
-  console.log('location', location.state);
+  const { searchWord, setSearchWord } = useContext(StateContext);
+  const location = useLocation();
+  const itemDetail = location.state.data.itemDetails;
+  console.log('itemDetail', itemDetail);
 
   const handleSearch = async() => {
     const resp = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${searchWord}`)
@@ -41,22 +43,17 @@ const Details = () => {
         </BoxPath>
         <InnerBox>
           <BoxProduct>
-            <Image src={Iphone} />
+            <Image src={itemDetail.picture} />
             <BoxInfo>
-              <Header>Nuevo - 234 vendidos</Header>
-              <Title>Iphone novo</Title>
-              <Price>$1998,00</Price>
+              <Header>{itemDetail.condition}- {itemDetail.sold_quantity} vendidos</Header>
+              <Title>{itemDetail.item.title}</Title>
+              <Price>${itemDetail.item.price}</Price>
               <BuyButton>Comprar</BuyButton>
             </BoxInfo>
           </BoxProduct>
           <BoxDescription>
             <TitleDescription>Descripción del producto</TitleDescription>
-            <DescriptionText>
-              BlablablaBlablablaBlablablaBlablabla
-              BlablablaBlablablaBlablablaBlablablaBlablablaBlablabla
-              BlablablaBlablablaBlablablaBlablablaBlablablaBlablabla
-              BlablablaBlablablaBlablablaBlablablaBlablabla
-            </DescriptionText>
+            <DescriptionText>{itemDetail.description}</DescriptionText>
           </BoxDescription>
         </InnerBox>
       </ContentBox>

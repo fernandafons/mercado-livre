@@ -30,12 +30,10 @@ class ItemController {
   }
 
   async detailItems(req, res){
-    console.log('entrou no detailitems server!!!!!!!!!1');
     try {
       const id = req.params.id;
       const details = await api.get(`/items/${id}`);
       const description = await api.get(`/items/${id}/description`);
-      // console.log('description.data', description.data);
 
       const data = {
         item:{

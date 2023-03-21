@@ -14,14 +14,14 @@ import {
   Location 
 } from './styles';
 
-const Card = ({ item, setItems }) => {
+const Card = ({ item }) => {
   const freeShipping = item.free_shipping;
   const navigate = useNavigate();
   
   const handleClick = async() => {
     const request = await api.get(`/api/items/${item.id}`)
     const itemDetails = request.data;
-    console.log('itemDetails', itemDetails);
+    console.log('item', item);
 
     const data = {
       itemDetails: itemDetails,
@@ -31,7 +31,7 @@ const Card = ({ item, setItems }) => {
   };
   return (
     <Container onClick={handleClick}>
-      <Image src={item.thumbnail} />
+      <Image src={item.picture} />
       <BoxDescription>
       <BoxHeader>
         <Price>
