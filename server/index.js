@@ -26,31 +26,6 @@ app.get('/search/​:query', (req, res) => {
     });
 });
 
-
-// app.get("/api", (req, res) => {
-//   res.json({ 
-//     author: {
-//       name: "Iphone",
-//       lastname: "Top",
-//     },
-//     categories:["Blablabla", "String", "String2"],
-//     items:[
-//       {
-//       id:'String',
-//       title:'String',
-//       price:{
-//         currency:'String',
-//         amount: 2,
-//         decimals:"Number"
-//       },
-//       picture:'String',
-//       condition:'String',
-//       free_shipping:true
-//       },
-//     ]
-//   })
-// });
-
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });

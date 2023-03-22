@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FcShipped } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/axios';
@@ -21,7 +21,6 @@ const Card = ({ item }) => {
   const handleClick = async() => {
     const request = await api.get(`/api/items/${item.id}`)
     const itemDetails = request.data;
-    console.log('item', item);
 
     const data = {
       itemDetails: itemDetails,

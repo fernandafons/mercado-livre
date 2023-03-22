@@ -31,6 +31,7 @@ const SearchBar = () => {
         placeholder='Nunca dejes de buscar'
         type="text"
         onKeyDown={handleKeyDown}
+        data-testid='input'
       />
       <BoxIcon onClick={handleSearch}>
         <Icon fontSize={'medium'}/>

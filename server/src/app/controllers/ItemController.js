@@ -6,8 +6,6 @@ class ItemController {
       const query = req.query.q;
       const response = await api.get(`/sites/MLA/search?q=${query}`, {params: {limit: 4}});
 
-      // console.log(response.data);
-
       const data = response.data.results.map(item => ({
         id: item.id,
         title: item.title,
@@ -23,9 +21,11 @@ class ItemController {
         state_name: item.address.state_name
       }))
 
+
       return res.status(200).json(data)
     } catch (error) {
       console.log(error);
+      return res.status(400)
     }
   }
 

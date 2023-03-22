@@ -24,7 +24,6 @@ import {
 const Details = () => {
   const location = useLocation();
   const itemDetail = location.state.data.itemDetails;
-  console.log('itemDetail', itemDetail);
 
   return (
     <Container>
